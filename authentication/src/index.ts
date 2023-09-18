@@ -7,6 +7,7 @@ import { currentUserRouter } from "./routes/current-user";
 import { signInRouter } from "./routes/sign-in";
 import { signOutRouter } from "./routes/sign-out";
 import { signUpRouter } from "./routes/sign-up";
+import { signUpFranchiseRouter } from "./routes/sign-up-franchise";
 import { errors as Err, middlewares as mw } from "@tj-movies-ticket/common/";
 
 const app = express();
@@ -25,6 +26,7 @@ app.use(currentUserRouter);
 app.use(signInRouter);
 app.use(signOutRouter);
 app.use(signUpRouter);
+app.use(signUpFranchiseRouter);
 
 app.get("*", async () => {
   throw new Err.NotFoundError();
