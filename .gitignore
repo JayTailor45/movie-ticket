@@ -1,2 +1,8 @@
-./*/node_modules
+authentication/node_modules
+expiration/node_modules
+franchise/node_modules
+movies/node_modules
+orders/node_modules
+payments/node_modules
+
 movie-ticket-common
