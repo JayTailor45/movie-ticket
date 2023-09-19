@@ -7,6 +7,7 @@ import { middlewares as mw, errors as Err } from "@tj-movies-ticket/common";
 import { natsWrapper } from "./nats-wrapper";
 import { createMovieRouter } from "./routes/new";
 import { indexMovieRouter } from "./routes";
+import { showMovieRouter } from "./routes/show";
 
 const app = express();
 
@@ -24,6 +25,7 @@ app.use(mw.currentUser);
 
 app.use(createMovieRouter);
 app.use(indexMovieRouter);
+app.use(showMovieRouter);
 
 app.get("*", async () => {
   throw new Err.NotFoundError();
