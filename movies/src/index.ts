@@ -8,6 +8,7 @@ import { natsWrapper } from "./nats-wrapper";
 import { createMovieRouter } from "./routes/new";
 import { indexMovieRouter } from "./routes";
 import { showMovieRouter } from "./routes/show";
+import { updateMovieRouter } from "./routes/update";
 
 const app = express();
 
@@ -26,6 +27,7 @@ app.use(mw.currentUser);
 app.use(createMovieRouter);
 app.use(indexMovieRouter);
 app.use(showMovieRouter);
+app.use(updateMovieRouter);
 
 app.get("*", async () => {
   throw new Err.NotFoundError();

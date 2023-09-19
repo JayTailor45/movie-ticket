@@ -1,15 +1,20 @@
 import express, { Request, Response } from "express";
-import { body } from "express-validator";
-import { middlewares as mw } from "@tj-movies-ticket/common";
+import { body, param } from "express-validator";
+import { middlewares as mw, errors as Err } from "@tj-movies-ticket/common";
 import { Movie } from "../models/movie";
+import { Types as MongooseTypes } from "mongoose";
+import { natsWrapper } from "../nats-wrapper";
 
 const router = express.Router();
 
-router.post(
-  "/api/movies",
+router.put(
+  "/api/movies/:id",
   mw.requireAuth,
   [
-    body("name").not().isEmpty().isString().withMessage("Name is required"),
+    param("id")
+      .custom((idValue) => MongooseTypes.ObjectId.isValid(idValue))
+      .withMessage("id must be a valid MongoDB ObjectId"),
+    body("name").not().isEmpty().withMessage("Name is required string"),
     body("description")
       .not()
       .isEmpty()
@@ -29,30 +34,37 @@ router.post(
       .withMessage("Director is required"),
     body("actors").isArray({ min: 1 }).withMessage("Actors are required"),
   ],
-  mw.validateRequest,
   async (req: Request, res: Response) => {
+    const movie = await Movie.findById(req.params.id);
+
+    if (!movie) {
+      throw new Err.NotFoundError();
+    }
+
     const {
       name,
       description,
-      releaseDate,
-      genres,
       languages,
-      director,
+      genres,
       actors,
+      director,
+      releaseDate,
     } = req.body;
-    const movie = Movie.build({
+
+    movie.set({
       name,
       description,
-      director,
-      releaseDate,
       languages,
       genres,
       actors,
+      director,
+      releaseDate,
     });
+
     await movie.save();
 
-    res.status(200).send(movie);
+    res.send(movie);
   }
 );
 
-export { router as createMovieRouter };
+export { router as updateMovieRouter };
