@@ -5,6 +5,7 @@ import cookieSession from "cookie-session";
 
 import { middlewares as mw, errors as Err } from "@tj-movies-ticket/common";
 import { natsWrapper } from "./nats-wrapper";
+import { createMovieRouter } from "./routes/new";
 
 const app = express();
 
@@ -19,6 +20,8 @@ app.use(
 );
 
 app.use(mw.currentUser);
+
+app.use(createMovieRouter);
 
 app.get("*", async () => {
   throw new Err.NotFoundError();
