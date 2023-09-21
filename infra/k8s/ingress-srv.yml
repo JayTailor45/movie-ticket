@@ -24,3 +24,10 @@ spec:
                 name: movies-srv
                 port:
                   number: 3000
+          - path: /api/franchise/?(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: franchise-srv
+                port:
+                  number: 3000
