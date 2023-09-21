@@ -5,6 +5,10 @@ import cookieSession from "cookie-session";
 
 import { middlewares as mw, errors as Err } from "@tj-movies-ticket/common";
 import { natsWrapper } from "./nats-wrapper";
+import { createFranchiseRouter } from "./routes/new";
+import { indexFranchiseRouter } from "./routes";
+import { showFranchiseRouter } from "./routes/show";
+import { updateFranchiseRouter } from "./routes/update";
 
 const app = express();
 
@@ -19,6 +23,11 @@ app.use(
 );
 
 app.use(mw.currentUser);
+
+app.use(createFranchiseRouter);
+app.use(indexFranchiseRouter);
+app.use(showFranchiseRouter);
+app.use(updateFranchiseRouter);
 
 app.get("*", async () => {
   throw new Err.NotFoundError();
