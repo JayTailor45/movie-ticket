@@ -31,3 +31,10 @@ spec:
                 name: franchise-srv
                 port:
                   number: 3000
+          - path: /api/shows/?(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: shows-srv
+                port:
+                  number: 3000

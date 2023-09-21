@@ -51,7 +51,7 @@ franchiseSchema.statics.build = (attrs: FranchiseAttrs) => {
 };
 
 const Franchise = mongoose.model<FranchiseAttrs, FranchiseModel>(
-  "movies",
+  "franchise",
   franchiseSchema
 );
 

@@ -31,3 +31,11 @@ build:
         manual:
           - dest: .
             src: 'src/**/*.ts'
+    - image: jaytailor45/movie-ticket-shows
+      context: shows
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - dest: .
+            src: 'src/**/*.ts'

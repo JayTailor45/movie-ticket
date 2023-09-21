@@ -4,5 +4,6 @@ franchise/node_modules
 movies/node_modules
 orders/node_modules
 payments/node_modules
+shows/node_modules
 
 movie-ticket-common
