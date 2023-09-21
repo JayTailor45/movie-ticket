@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: franchise-mongo-depl
+spec:
+  selector:
+    matchLabels:
+      app: franchise-mongo
+  template:
+    metadata:
+      labels:
+        app: franchise-mongo
+    spec:
+      containers:
+      - name: franchise-mongo
+        image: mongo
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: franchise-mongo-srv
+spec:
+  selector:
+    app: franchise-mongo
+  ports:
+    - name: db
+      protocol: TCP
+      port: 27017
+      targetPort: 27017

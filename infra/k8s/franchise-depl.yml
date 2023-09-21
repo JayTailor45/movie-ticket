@@ -1,0 +1,48 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: franchise-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: franchise
+  template:
+    metadata:
+      labels:
+        app: franchise
+    spec:
+      containers:
+        - name: franchise
+          image: jaytailor45/movie-ticket-franchise:latest
+          env:
+            - name: NATS_URL
+              value: 'http://nats-srv:4222'
+            - name: NATS_CLUSTER
+              value: movie-ticket-app
+            - name: NATS_CLIENT_ID
+              valueFrom: 
+                fieldRef:
+                  fieldPath: metadata.name
+            - name: MONGO_URI
+              value: 'mongodb://franchise-mongo-srv:27017/franchise'
+            - name: JWT_KEY
+              valueFrom: 
+                secretKeyRef:
+                  name: jwt-secret
+                  key: JWT_KEY
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: franchise-srv
+spec:
+  selector:
+    app: franchise
+  ports:
+    - name: franchise
+      protocol: TCP
+      port: 3000
+      targetPort: 3000
