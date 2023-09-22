@@ -25,6 +25,11 @@ router.put(
       .isEmpty()
       .isString()
       .withMessage("Address is required"),
+    body("city")
+      .isString()
+      .not()
+      .isEmpty()
+      .withMessage("City is required"),
   ],
   async (req: Request, res: Response) => {
     const franchise = await Franchise.findById(req.params.id);
@@ -36,21 +41,15 @@ router.put(
     const {
       name,
       description,
-      languages,
-      genres,
-      actors,
-      director,
-      releaseDate,
+      address,
+      city,
     } = req.body;
 
     franchise.set({
       name,
       description,
-      languages,
-      genres,
-      actors,
-      director,
-      releaseDate,
+      address,
+      city,
     });
 
     await franchise.save();

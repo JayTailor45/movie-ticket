@@ -20,6 +20,11 @@ router.post(
       .isEmpty()
       .isString()
       .withMessage("Address is required"),
+    body("city")
+      .isString()
+      .not()
+      .isEmpty()
+      .withMessage("City is required"),
   ],
   mw.validateRequest,
   async (req: Request, res: Response) => {
@@ -27,11 +32,13 @@ router.post(
       name,
       description,
       address,
+      city,
     } = req.body;
     const franchise = Franchise.build({
       name,
       description,
       address,
+      city
     });
     await franchise.save();
 

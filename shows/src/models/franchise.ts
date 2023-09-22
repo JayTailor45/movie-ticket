@@ -2,13 +2,15 @@ import mongoose from "mongoose";
 import { updateIfCurrentPlugin } from "mongoose-update-if-current";
 
 interface FranchiseAttrs {
+  id: string;
   name: string;
   description: string;
   address: string;
   city: string;
+  version: number;
 }
 
-interface FranchiseDoc extends mongoose.Document {
+export interface FranchiseDoc extends mongoose.Document {
   name: string;
   description: string;
   address: string;
