@@ -1,7 +1,7 @@
 {
   "_type": "export",
   "__export_format": 4,
-  "__export_date": "2023-09-21T07:40:11.114Z",
+  "__export_date": "2023-09-26T13:46:23.332Z",
   "__export_source": "insomnia.desktop.app:v2023.4.0",
   "resources": [
     {
@@ -55,7 +55,7 @@
     {
       "_id": "req_5487229718b7449db10e2d86587e4f60",
       "parentId": "fld_d26c2ae9c1e84975bc60007e788eb140",
-      "modified": 1695027352869,
+      "modified": 1695377605729,
       "created": 1695025016748,
       "url": "{{ _.URL }}/api/users/signin",
       "name": "Sign In",
@@ -63,7 +63,7 @@
       "method": "POST",
       "body": {
         "mimeType": "application/json",
-        "text": "{\n\t\"email\": \"tailorj64franchise@gmail.com\",\n\t\"password\": \"password\"\n}"
+        "text": "{\n\t\"email\": \"tailorj64@gmail.com\",\n\t\"password\": \"password\"\n}"
       },
       "parameters": [],
       "headers": [{ "name": "Content-Type", "value": "application/json" }],
@@ -266,7 +266,7 @@
     {
       "_id": "req_7f7c308f990f4cbca8e8f35d2e0398e1",
       "parentId": "fld_0ddd3f4fb5c14ee28686d6551841cf42",
-      "modified": 1695281788881,
+      "modified": 1695368955230,
       "created": 1695281140653,
       "url": "{{ _.URL }}/api/franchise",
       "name": "Add franchise",
@@ -274,7 +274,7 @@
       "method": "POST",
       "body": {
         "mimeType": "application/json",
-        "text": "{\n\t\"name\": \"Valntine\",\n\t\"description\": \"Neat and clean environment with dolby atmos\",\n\t\"address\": \"Surat\"\n}"
+        "text": "{\n\t\"name\": \"Valntine\",\n\t\"description\": \"Neat and clean environment with dolby atmos\",\n\t\"address\": \"Near VR mall, Surat\",\n\t\"city\": \"Surat\"\n}"
       },
       "parameters": [],
       "headers": [{ "name": "Content-Type", "value": "application/json" }],
@@ -327,7 +327,7 @@
     {
       "_id": "req_0bb85861c2cb4ad08953b94dab84b3a8",
       "parentId": "fld_0ddd3f4fb5c14ee28686d6551841cf42",
-      "modified": 1695281882242,
+      "modified": 1695368968902,
       "created": 1695281686732,
       "url": "{{ _.URL }}/api/franchise/650bf27fdf4cbb84de62778f",
       "name": "Update franchise",
@@ -335,7 +335,7 @@
       "method": "PUT",
       "body": {
         "mimeType": "application/json",
-        "text": "{\n\t\"name\": \"INOX\",\n\t\"description\": \"Neat and clean environment with dolby atmos\",\n\t\"address\": \"Surat\"\n}"
+        "text": "{\n\t\"name\": \"INOX\",\n\t\"description\": \"Neat and clean environment with dolby atmos\",\n\t\"address\": \"Surat\",\n\t\"city\": \"Surat\"\n}"
       },
       "parameters": [],
       "headers": [{ "name": "Content-Type", "value": "application/json" }],
@@ -353,10 +353,10 @@
     {
       "_id": "req_05d37900e0024e06915e24092cbbec83",
       "parentId": "fld_0ddd3f4fb5c14ee28686d6551841cf42",
-      "modified": 1695281924182,
+      "modified": 1695377650241,
       "created": 1695281913742,
       "url": "{{ _.URL }}/api/franchise/650bf27fdf4cbb84de62778f",
-      "name": "Get franchises",
+      "name": "Get franchise",
       "description": "",
       "method": "GET",
       "body": {},
@@ -374,6 +374,44 @@
       "_type": "request"
     },
     {
+      "_id": "req_a807109c74024630b1baaebf5b418e0e",
+      "parentId": "fld_75faf425a87540868a07a8abd61dbcb6",
+      "modified": 1695378130036,
+      "created": 1695377481396,
+      "url": "{{ _.URL }}/api/shows/",
+      "name": "Add show",
+      "description": "",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n\t\"name\": \"007 Bond\",\n\t\"language\": \"Hindi\",\n\t\"genres\": [\"Crime\"],\n\t\"price\": 100.0,\n\t\"capacity\": 120,\n\t\"startTime\": \"2023-09-22T10:19:03.652Z\",\n\t\"endTime\": \"2023-09-22T10:19:03.652Z\",\n\t\"movie\": \"650d68d15af525af81a8907d\",\n\t\"franchise\": \"650d68d9639323c8a46a0c20\"\n}"
+      },
+      "parameters": [],
+      "headers": [{ "name": "Content-Type", "value": "application/json" }],
+      "authentication": {},
+      "metaSortKey": -1695079059596.9648,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "fld_75faf425a87540868a07a8abd61dbcb6",
+      "parentId": "wrk_12bb4f49c25d42549812801d3af9bcb0",
+      "modified": 1695377472810,
+      "created": 1695377472810,
+      "name": "Shows",
+      "description": "",
+      "environment": {},
+      "environmentPropertyOrder": null,
+      "metaSortKey": -1695377472810,
+      "_type": "request_group"
+    },
+    {
       "_id": "env_07b8c6efbd777cb8eed7f33fdcb42ff0f3875832",
       "parentId": "wrk_12bb4f49c25d42549812801d3af9bcb0",
       "modified": 1695023687164,
@@ -389,21 +427,21 @@
     {
       "_id": "jar_07b8c6efbd777cb8eed7f33fdcb42ff0f3875832",
       "parentId": "wrk_12bb4f49c25d42549812801d3af9bcb0",
-      "modified": 1695118016622,
+      "modified": 1695378052332,
       "created": 1695019860918,
       "name": "Default Jar",
       "cookies": [
         {
           "key": "session",
-          "value": "eyJqd3QiOiJleUpoYkdjaU9pSklVekkxTmlJc0luUjVjQ0k2SWtwWFZDSjkuZXlKcFpDSTZJalkxTURrM01tSmtNalJrTVRBMU1EY3pZV1V5Wmpaak55SXNJbVZ0WVdsc0lqb2lkR0ZwYkc5eWFqWTBabkpoYm1Ob2FYTmxRR2R0WVdsc0xtTnZiU0lzSW1saGRDSTZNVFk1TlRFeE9EQXhObjAuM1pjcWNFU3BUQlBDSnRaLTJxcExCdXVtSFZDWUtRTlJjWVlabzFSblBoZyJ9",
+          "value": "eyJqd3QiOiJleUpoYkdjaU9pSklVekkxTmlJc0luUjVjQ0k2SWtwWFZDSjkuZXlKcFpDSTZJalkxTUdRMllUZ3hPREl6TWpnME16TmtZMlJrWlRjMllpSXNJbVZ0WVdsc0lqb2lkR0ZwYkc5eWFqWTBRR2R0WVdsc0xtTnZiU0lzSW1saGRDSTZNVFk1TlRNM09EQTFNbjAuM1E3RnN1a3g1cHd5UkFoVWstMGhBd2F2bEUtSnZpX3N2V21xT0hlTFZfWSJ9",
           "domain": "movie-ticket.com",
           "path": "/",
           "secure": true,
           "httpOnly": true,
           "hostOnly": true,
           "creation": "2023-09-18T08:07:23.150Z",
-          "lastAccessed": "2023-09-19T10:06:56.622Z",
-          "id": "42941050836546624"
+          "lastAccessed": "2023-09-22T10:20:52.332Z",
+          "id": "4916293167781287"
         }
       ],
       "_type": "cookie_jar"

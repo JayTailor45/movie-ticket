@@ -20,6 +20,10 @@ export interface FranchiseDoc extends mongoose.Document {
 
 interface FranchiseModel extends mongoose.Model<FranchiseDoc> {
   build(attrs: FranchiseAttrs): FranchiseDoc;
+  findByEvent(event: {
+    id: string;
+    version: number;
+  }): Promise<FranchiseDoc | null>;
 }
 
 const franchiseSchema = new mongoose.Schema(
@@ -53,6 +57,16 @@ const franchiseSchema = new mongoose.Schema(
 
 franchiseSchema.set("versionKey", "version");
 franchiseSchema.plugin(updateIfCurrentPlugin);
+
+franchiseSchema.statics.findByEvent = (event: {
+  id: string;
+  version: number;
+}) => {
+  return Franchise.findOne({
+    _id: event.id,
+    version: event.version - 1,
+  });
+};
 
 franchiseSchema.statics.build = (attrs: FranchiseAttrs) => {
   return new Franchise(attrs);

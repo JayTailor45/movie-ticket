@@ -5,6 +5,10 @@ import cookieSession from "cookie-session";
 
 import { middlewares as mw, errors as Err } from "@tj-movies-ticket/common";
 import { natsWrapper } from "./nats-wrapper";
+import { MovieCreatedListener } from "./events/listeners/movie-created.listener";
+import { MovieUpdatedListener } from "./events/listeners/movie-updated.listener";
+import { FranchiseCreatedListener } from "./events/listeners/franchise-created.listener";
+import { FranchiseUpdatedListener } from "./events/listeners/franchise-updated.listener";
 
 const app = express();
 
@@ -56,6 +60,12 @@ const start = async () => {
     });
     process.on("SIGINT", () => natsWrapper.client.close());
     process.on("SIGTERM", () => natsWrapper.client.close());
+
+    new MovieCreatedListener(natsWrapper.client).listen();
+    new MovieUpdatedListener(natsWrapper.client).listen();
+
+    new FranchiseCreatedListener(natsWrapper.client).listen();
+    new FranchiseUpdatedListener(natsWrapper.client).listen();
 
     await mongoose.connect(process.env.MONGO_URI);
     console.log("Franchise app connected to mongodb");

@@ -26,6 +26,7 @@ export interface MovieDoc extends mongoose.Document {
 
 interface MovieModel extends mongoose.Model<MovieDoc> {
   build(attrs: MovieAttrs): MovieDoc;
+  findByEvent(event: { id: string; version: number }): Promise<MovieDoc | null>;
 }
 
 const movieSchema = new mongoose.Schema(
@@ -74,6 +75,13 @@ const movieSchema = new mongoose.Schema(
 
 movieSchema.set("versionKey", "version");
 movieSchema.plugin(updateIfCurrentPlugin);
+
+movieSchema.statics.findByEvent = (event: { id: string; version: number }) => {
+  return Movie.findOne({
+    _id: event.id,
+    version: event.version - 1,
+  });
+};
 
 movieSchema.statics.build = (attrs: MovieAttrs) => {
   return new Movie(attrs);
