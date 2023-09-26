@@ -15,7 +15,7 @@ app.use(
   cookieSession({
     signed: false,
     secure: true,
-  })
+  }),
 );
 
 app.use(mw.currentUser);
@@ -48,7 +48,7 @@ const start = async () => {
     await natsWrapper.connect(
       process.env.NATS_CLUSTER,
       process.env.NATS_CLIENT_ID, // <-- Client id will be pod id/name
-      process.env.NATS_URL
+      process.env.NATS_URL,
     );
     natsWrapper.client.on("close", () => {
       console.log("NATS connection closed!");

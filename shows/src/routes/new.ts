@@ -4,6 +4,8 @@ import { middlewares as mw, errors as Err } from "@tj-movies-ticket/common";
 import { Show } from "../models/show";
 import { Movie } from "../models/movie";
 import { Franchise } from "../models/franchise";
+import { ShowCreatedPublisher } from "../events/publishers/show-created.publisher";
+import { natsWrapper } from "../nats-wrapper";
 
 const router = express.Router();
 
@@ -53,8 +55,19 @@ router.post(
 
     await show.save();
 
+    new ShowCreatedPublisher(natsWrapper.client).publish({
+      id: show.id,
+      capacity: show.capacity,
+      price: show.price,
+      startTime: show.startTime.toISOString(),
+      endTime: show.endTime.toISOString(),
+      movie: movie.id,
+      franchise: franchise.id,
+      version: show.version,
+    });
+
     res.status(200).send(show);
-  }
+  },
 );
 
 export { router as createShowRouter };

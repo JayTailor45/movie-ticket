@@ -24,7 +24,7 @@ export interface MovieDoc extends mongoose.Document {
   version: number;
 }
 
-interface MovieModel extends mongoose.Model<MovieAttrs> {
+interface MovieModel extends mongoose.Model<MovieDoc> {
   build(attrs: MovieAttrs): MovieDoc;
 }
 
@@ -69,7 +69,7 @@ const movieSchema = new mongoose.Schema(
         delete ret._id;
       },
     },
-  }
+  },
 );
 
 movieSchema.set("versionKey", "version");

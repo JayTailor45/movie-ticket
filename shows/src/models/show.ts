@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 import { updateIfCurrentPlugin } from "mongoose-update-if-current";
-import { MovieDoc } from './movie'
+import { MovieDoc } from "./movie";
 import { FranchiseDoc } from "./franchise";
 
 interface ShowAttrs {
@@ -22,7 +22,7 @@ interface ShowDoc extends mongoose.Document {
   version: number;
 }
 
-interface ShowModel extends mongoose.Model<ShowAttrs> {
+interface ShowModel extends mongoose.Model<ShowDoc> {
   build(attrs: ShowAttrs): ShowDoc;
 }
 
@@ -63,7 +63,7 @@ const showSchema = new mongoose.Schema(
         delete ret._id;
       },
     },
-  }
+  },
 );
 
 showSchema.set("versionKey", "version");

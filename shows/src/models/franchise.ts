@@ -18,7 +18,7 @@ export interface FranchiseDoc extends mongoose.Document {
   version: number;
 }
 
-interface FranchiseModel extends mongoose.Model<FranchiseAttrs> {
+interface FranchiseModel extends mongoose.Model<FranchiseDoc> {
   build(attrs: FranchiseAttrs): FranchiseDoc;
 }
 
@@ -48,7 +48,7 @@ const franchiseSchema = new mongoose.Schema(
         delete ret._id;
       },
     },
-  }
+  },
 );
 
 franchiseSchema.set("versionKey", "version");
@@ -60,7 +60,7 @@ franchiseSchema.statics.build = (attrs: FranchiseAttrs) => {
 
 const Franchise = mongoose.model<FranchiseAttrs, FranchiseModel>(
   "franchise",
-  franchiseSchema
+  franchiseSchema,
 );
 
 export { Franchise };

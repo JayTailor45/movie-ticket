@@ -4,6 +4,7 @@ import { middlewares as mw, errors as Err } from "@tj-movies-ticket/common";
 import { Show } from "../models/show";
 import { Types as MongooseTypes } from "mongoose";
 import { natsWrapper } from "../nats-wrapper";
+import { ShowUpdatedPublisher } from "../events/publishers/show-updated.publisher";
 
 const router = express.Router();
 
@@ -14,12 +15,12 @@ router.put(
     param("id")
       .custom((idValue) => MongooseTypes.ObjectId.isValid(idValue))
       .withMessage("id must be a valid MongoDB ObjectId"),
-    body("movie").isString().not().isEmpty().withMessage("Movie is required"),
-    body("franchise")
-      .isString()
-      .not()
-      .isEmpty()
-      .withMessage("Franchise is required"),
+    // body("movie").isString().not().isEmpty().withMessage("Movie is required"),
+    // body("franchise")
+    //   .isString()
+    //   .not()
+    //   .isEmpty()
+    //   .withMessage("Franchise is required"),
     body("price").isFloat({ min: 100.0 }).withMessage("Price is required"),
     body("capacity").isInt({ min: 80 }).withMessage("Capacity is required"),
     body("startTime").isDate().withMessage("Start time is required"),
@@ -40,6 +41,8 @@ router.put(
       actors,
       director,
       releaseDate,
+      // movie,
+      // franchise,
     } = req.body;
 
     show.set({
@@ -54,8 +57,19 @@ router.put(
 
     await show.save();
 
+    new ShowUpdatedPublisher(natsWrapper.client).publish({
+      id: show.id,
+      capacity: show.capacity,
+      price: show.price,
+      startTime: show.startTime.toISOString(),
+      endTime: show.endTime.toISOString(),
+      movie: show.movie.id,
+      franchise: show.franchise.id,
+      version: show.version,
+    });
+
     res.send(show);
-  }
+  },
 );
 
 export { router as updateShowRouter };

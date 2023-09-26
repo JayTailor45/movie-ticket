@@ -19,7 +19,7 @@ router.get(
       throw new Err.NotFoundError();
     }
     res.send(show);
-  }
+  },
 );
 
 export { router as showShowRouter };
