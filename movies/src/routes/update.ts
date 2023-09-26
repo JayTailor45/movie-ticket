@@ -4,6 +4,7 @@ import { middlewares as mw, errors as Err } from "@tj-movies-ticket/common";
 import { Movie } from "../models/movie";
 import { Types as MongooseTypes } from "mongoose";
 import { natsWrapper } from "../nats-wrapper";
+import { MovieUpdatedPublisher } from "../events/publishers/movie-updated.publisher";
 
 const router = express.Router();
 
@@ -63,8 +64,20 @@ router.put(
 
     await movie.save();
 
+    new MovieUpdatedPublisher(natsWrapper.client).publish({
+      id: movie.id,
+      name: movie.name,
+      description: movie.description,
+      director: movie.director,
+      releaseDate: movie.releaseDate.toISOString(),
+      languages: movie.languages,
+      genres: movie.genres,
+      actors: movie.actors,
+      version: movie.version,
+    });
+
     res.send(movie);
-  }
+  },
 );
 
 export { router as updateMovieRouter };

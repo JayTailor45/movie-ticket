@@ -19,7 +19,7 @@ router.get(
       throw new Err.NotFoundError();
     }
     res.send(movie);
-  }
+  },
 );
 
 export { router as showMovieRouter };

@@ -2,6 +2,8 @@ import express, { Request, Response } from "express";
 import { body } from "express-validator";
 import { middlewares as mw } from "@tj-movies-ticket/common";
 import { Movie } from "../models/movie";
+import { MovieCreatedPublisher } from "../events/publishers/movie-created.publisher";
+import { natsWrapper } from "../nats-wrapper";
 
 const router = express.Router();
 
@@ -51,8 +53,20 @@ router.post(
     });
     await movie.save();
 
+    new MovieCreatedPublisher(natsWrapper.client).publish({
+      id: movie.id,
+      name: movie.name,
+      description: movie.description,
+      director: movie.director,
+      releaseDate: movie.releaseDate,
+      languages: movie.languages,
+      genres: movie.genres,
+      actors: movie.actors,
+      version: movie.version,
+    });
+
     res.status(200).send(movie);
-  }
+  },
 );
 
 export { router as createMovieRouter };
