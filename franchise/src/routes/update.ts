@@ -4,6 +4,7 @@ import { middlewares as mw, errors as Err } from "@tj-movies-ticket/common";
 import { Franchise } from "../models/franchise";
 import { Types as MongooseTypes } from "mongoose";
 import { natsWrapper } from "../nats-wrapper";
+import { FranchiseUpdatedPublisher } from "../events/publishers/franchise-updated.publisher";
 
 const router = express.Router();
 
@@ -25,11 +26,7 @@ router.put(
       .isEmpty()
       .isString()
       .withMessage("Address is required"),
-    body("city")
-      .isString()
-      .not()
-      .isEmpty()
-      .withMessage("City is required"),
+    body("city").isString().not().isEmpty().withMessage("City is required"),
   ],
   async (req: Request, res: Response) => {
     const franchise = await Franchise.findById(req.params.id);
@@ -38,12 +35,7 @@ router.put(
       throw new Err.NotFoundError();
     }
 
-    const {
-      name,
-      description,
-      address,
-      city,
-    } = req.body;
+    const { name, description, address, city } = req.body;
 
     franchise.set({
       name,
@@ -54,8 +46,17 @@ router.put(
 
     await franchise.save();
 
+    new FranchiseUpdatedPublisher(natsWrapper.client).publish({
+      id: franchise.id,
+      name: franchise.name,
+      description: franchise.description,
+      address: franchise.address,
+      city: franchise.city,
+      version: franchise.version,
+    });
+
     res.send(franchise);
-  }
+  },
 );
 
 export { router as updateFranchiseRouter };

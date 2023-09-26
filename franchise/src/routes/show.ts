@@ -19,7 +19,7 @@ router.get(
       throw new Err.NotFoundError();
     }
     res.send(franchise);
-  }
+  },
 );
 
 export { router as showFranchiseRouter };
