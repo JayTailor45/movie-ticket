@@ -21,8 +21,8 @@ router.post(
       .withMessage("Franchise is required"),
     body("price").isFloat({ min: 100.0 }).withMessage("Price is required"),
     body("capacity").isInt({ min: 80 }).withMessage("Capacity is required"),
-    body("startTime").isDate().withMessage("Start time is required"),
-    body("endTime").isDate().withMessage("End time is required"),
+    body("startTime").isISO8601().withMessage("Start time is required"),
+    body("endTime").isISO8601().withMessage("End time is required"),
   ],
   mw.validateRequest,
   async (req: Request, res: Response) => {

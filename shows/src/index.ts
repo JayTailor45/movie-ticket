@@ -9,6 +9,10 @@ import { MovieCreatedListener } from "./events/listeners/movie-created.listener"
 import { MovieUpdatedListener } from "./events/listeners/movie-updated.listener";
 import { FranchiseCreatedListener } from "./events/listeners/franchise-created.listener";
 import { FranchiseUpdatedListener } from "./events/listeners/franchise-updated.listener";
+import { showShowRouter } from "./routes/show";
+import { createShowRouter } from "./routes/new";
+import { updateShowRouter } from "./routes/update";
+import { indexShowRouter } from "./routes";
 
 const app = express();
 
@@ -23,6 +27,11 @@ app.use(
 );
 
 app.use(mw.currentUser);
+
+app.use(indexShowRouter);
+app.use(showShowRouter);
+app.use(createShowRouter);
+app.use(updateShowRouter);
 
 app.get("*", async () => {
   throw new Err.NotFoundError();

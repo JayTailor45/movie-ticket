@@ -1,7 +1,7 @@
 {
   "_type": "export",
   "__export_format": 4,
-  "__export_date": "2023-09-26T13:46:23.332Z",
+  "__export_date": "2023-09-27T08:47:58.386Z",
   "__export_source": "insomnia.desktop.app:v2023.4.0",
   "resources": [
     {
@@ -156,7 +156,7 @@
     {
       "_id": "req_1ea47a6b63984e99b643809fd6c3a9b3",
       "parentId": "fld_6ee3e17a455747969fb77639a7cbb57e",
-      "modified": 1695120856076,
+      "modified": 1695801212114,
       "created": 1695109585978,
       "url": "{{ _.URL }}/api/movies",
       "name": "Add movie",
@@ -164,7 +164,7 @@
       "method": "POST",
       "body": {
         "mimeType": "application/json",
-        "text": "{\n\t\"name\": \"007 Bond\",\n\t\"description\": \"James bond movie part 2\",\n\t\"releaseDate\": \"Tue Sep 19 2023 15:38:23 GMT+0530 (India Standard Time)\",\n\t\"genres\": [\"crime\"],\n\t\"languages\": [\"english\"],\n\t\"director\": \"Bond\",\n\t\"actors\": [\"James Bond\"]\n\t\n}"
+        "text": "{\n\t\"name\": \"007 Bond\",\n\t\"description\": \"James bond movie part 2\",\n\t\"releaseDate\": \"Tue Sep 19 2023 15:38:23 GMT+0530 (India Standard Time)\",\n\t\"genres\": [\"crime\"],\n\t\"languages\": [\"english\"],\n\t\"director\": \"Bond\",\n\t\"actors\": [\"James Bond\"]\n}"
       },
       "parameters": [],
       "headers": [{ "name": "Content-Type", "value": "application/json" }],
@@ -376,7 +376,7 @@
     {
       "_id": "req_a807109c74024630b1baaebf5b418e0e",
       "parentId": "fld_75faf425a87540868a07a8abd61dbcb6",
-      "modified": 1695378130036,
+      "modified": 1695803689304,
       "created": 1695377481396,
       "url": "{{ _.URL }}/api/shows/",
       "name": "Add show",
@@ -384,7 +384,7 @@
       "method": "POST",
       "body": {
         "mimeType": "application/json",
-        "text": "{\n\t\"name\": \"007 Bond\",\n\t\"language\": \"Hindi\",\n\t\"genres\": [\"Crime\"],\n\t\"price\": 100.0,\n\t\"capacity\": 120,\n\t\"startTime\": \"2023-09-22T10:19:03.652Z\",\n\t\"endTime\": \"2023-09-22T10:19:03.652Z\",\n\t\"movie\": \"650d68d15af525af81a8907d\",\n\t\"franchise\": \"650d68d9639323c8a46a0c20\"\n}"
+        "text": "{\n\t\"name\": \"007 Bond\",\n\t\"language\": \"Hindi\",\n\t\"genres\": [\"Crime\"],\n\t\"price\": 100.0,\n\t\"capacity\": 120,\n\t\"startTime\": \"2023-09-22T10:19:03.652Z\",\n\t\"endTime\": \"2023-09-22T10:19:03.652Z\",\n\t\"movie\": \"6513e914bd3b69c0926848f5\",\n\t\"franchise\": \"6513e91784338ff402a3e4ff\"\n}"
       },
       "parameters": [],
       "headers": [{ "name": "Content-Type", "value": "application/json" }],
@@ -412,6 +412,32 @@
       "_type": "request_group"
     },
     {
+      "_id": "req_61e8aa5d4452490e90a2b6113bd3db0c",
+      "parentId": "fld_75faf425a87540868a07a8abd61dbcb6",
+      "modified": 1695801260316,
+      "created": 1695800935906,
+      "url": "{{ _.URL }}/api/shows/",
+      "name": "Shows",
+      "description": "",
+      "method": "GET",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n\t\"name\": \"007 Bond\",\n\t\"language\": \"Hindi\",\n\t\"genres\": [\"Crime\"],\n\t\"price\": 100.0,\n\t\"capacity\": 120,\n\t\"startTime\": \"2023-09-22T10:19:03.652Z\",\n\t\"endTime\": \"2023-09-22T10:19:03.652Z\",\n\t\"movie\": \"650d68d15af525af81a8907d\",\n\t\"franchise\": \"650d68d9639323c8a46a0c20\"\n}"
+      },
+      "parameters": [],
+      "headers": [{ "name": "Content-Type", "value": "application/json" }],
+      "authentication": {},
+      "metaSortKey": -1695078556741.088,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
       "_id": "env_07b8c6efbd777cb8eed7f33fdcb42ff0f3875832",
       "parentId": "wrk_12bb4f49c25d42549812801d3af9bcb0",
       "modified": 1695023687164,
@@ -427,21 +453,21 @@
     {
       "_id": "jar_07b8c6efbd777cb8eed7f33fdcb42ff0f3875832",
       "parentId": "wrk_12bb4f49c25d42549812801d3af9bcb0",
-      "modified": 1695378052332,
+      "modified": 1695801205833,
       "created": 1695019860918,
       "name": "Default Jar",
       "cookies": [
         {
           "key": "session",
-          "value": "eyJqd3QiOiJleUpoYkdjaU9pSklVekkxTmlJc0luUjVjQ0k2SWtwWFZDSjkuZXlKcFpDSTZJalkxTUdRMllUZ3hPREl6TWpnME16TmtZMlJrWlRjMllpSXNJbVZ0WVdsc0lqb2lkR0ZwYkc5eWFqWTBRR2R0WVdsc0xtTnZiU0lzSW1saGRDSTZNVFk1TlRNM09EQTFNbjAuM1E3RnN1a3g1cHd5UkFoVWstMGhBd2F2bEUtSnZpX3N2V21xT0hlTFZfWSJ9",
+          "value": "eyJqd3QiOiJleUpoYkdjaU9pSklVekkxTmlJc0luUjVjQ0k2SWtwWFZDSjkuZXlKcFpDSTZJalkxTVROa1pqY3dZV001WVRRMVlUQXdOMlJsT0RCaU15SXNJbVZ0WVdsc0lqb2lkR0ZwYkc5eWFqWTBRR2R0WVdsc0xtTnZiU0lzSW1saGRDSTZNVFk1TlRnd01USXdOWDAudF94UTdGQ0Q0UzNFdG1YQllyb2RIVTJ4T0NaM3Y4YUMtdExxUy1sZG83VSJ9",
           "domain": "movie-ticket.com",
           "path": "/",
           "secure": true,
           "httpOnly": true,
           "hostOnly": true,
           "creation": "2023-09-18T08:07:23.150Z",
-          "lastAccessed": "2023-09-22T10:20:52.332Z",
-          "id": "4916293167781287"
+          "lastAccessed": "2023-09-27T07:53:25.833Z",
+          "id": "7774959834587378"
         }
       ],
       "_type": "cookie_jar"
