@@ -19,13 +19,14 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@tj-movies-ticket/common": "^0.6.0",
+    "@tj-movies-ticket/common": "^0.14.0",
     "cookie-session": "^2.0.0",
     "express": "^4.18.2",
     "express-async-errors": "^3.1.1",
     "express-validator": "^7.0.1",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^7.4.5",
+    "mongoose-update-if-current": "^1.4.0",
     "ts-node-dev": "^2.0.0",
     "typescript": "^5.2.2"
   },

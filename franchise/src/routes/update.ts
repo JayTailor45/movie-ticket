@@ -53,6 +53,7 @@ router.put(
       address: franchise.address,
       city: franchise.city,
       version: franchise.version,
+      user: franchise.user.id,
     });
 
     res.send(franchise);

@@ -1,16 +1,14 @@
 import mongoose from "mongoose";
 import { Password } from "../services/password";
 import { enums } from "@tj-movies-ticket/common";
-import { UserGender, UserType } from "@tj-movies-ticket/common/build/enums";
 
 interface UserAttrs {
   email: string;
   password: string;
   city: string;
   username: string;
-  gender: UserGender;
-  organization?: string;
-  type?: UserType;
+  gender: enums.UserGender;
+  type?: enums.UserType;
 }
 
 interface UserModel extends mongoose.Model<UserDoc> {
@@ -20,6 +18,10 @@ interface UserModel extends mongoose.Model<UserDoc> {
 interface UserDoc extends mongoose.Document {
   email: string;
   password: string;
+  city: string;
+  username: string;
+  gender: enums.UserGender;
+  type: enums.UserType;
 }
 
 const userSchema = new mongoose.Schema(
@@ -51,10 +53,6 @@ const userSchema = new mongoose.Schema(
       required: true,
       enum: Object.values(enums.UserGender),
     },
-    organization: {
-      type: String,
-      required: false,
-    },
   },
   {
     toJSON: {
@@ -64,7 +62,7 @@ const userSchema = new mongoose.Schema(
         return ret;
       },
     },
-  }
+  },
 );
 
 userSchema.pre("save", async function (done) {

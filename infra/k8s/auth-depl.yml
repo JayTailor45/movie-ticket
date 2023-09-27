@@ -16,6 +16,14 @@ spec:
         - name: authentication
           image: jaytailor45/movie-ticket-authentication:latest
           env:
+            - name: NATS_URL
+              value: 'http://authentication-srv:4222'
+            - name: NATS_CLUSTER
+              value: movie-ticket-app
+            - name: NATS_CLIENT_ID
+              valueFrom: 
+                fieldRef:
+                  fieldPath: metadata.name
             - name: MONGO_URI
               value: 'mongodb://authentication-mongo-srv:27017/auth'
             - name: JWT_KEY

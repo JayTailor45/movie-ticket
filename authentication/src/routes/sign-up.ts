@@ -56,7 +56,7 @@ router.post(
         id: user.id,
         email: user.email,
       },
-      process.env.JWT_KEY!
+      process.env.JWT_KEY!,
     );
 
     // store jwt on session object
@@ -65,7 +65,7 @@ router.post(
     };
 
     res.status(201).send(user);
-  }
+  },
 );
 
 export { router as signUpRouter };

@@ -1,11 +1,13 @@
 import mongoose from "mongoose";
 import { updateIfCurrentPlugin } from "mongoose-update-if-current";
+import { UserDoc } from "./user";
 
 interface FranchiseAttrs {
   name: string;
   description: string;
   address: string;
   city: string;
+  user: UserDoc;
 }
 
 interface FranchiseDoc extends mongoose.Document {
@@ -14,6 +16,7 @@ interface FranchiseDoc extends mongoose.Document {
   address: string;
   city: string;
   version: number;
+  user: UserDoc;
 }
 
 interface FranchiseModel extends mongoose.Model<FranchiseDoc> {
@@ -37,6 +40,11 @@ const franchiseSchema = new mongoose.Schema(
     city: {
       type: String,
       require: true,
+    },
+    user: {
+      require: false,
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "users",
     },
   },
   {
