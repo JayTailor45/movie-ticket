@@ -1,7 +1,7 @@
 {
   "_type": "export",
   "__export_format": 4,
-  "__export_date": "2023-09-27T08:47:58.386Z",
+  "__export_date": "2023-09-27T08:55:17.431Z",
   "__export_source": "insomnia.desktop.app:v2023.4.0",
   "resources": [
     {
@@ -376,7 +376,7 @@
     {
       "_id": "req_a807109c74024630b1baaebf5b418e0e",
       "parentId": "fld_75faf425a87540868a07a8abd61dbcb6",
-      "modified": 1695803689304,
+      "modified": 1695804842648,
       "created": 1695377481396,
       "url": "{{ _.URL }}/api/shows/",
       "name": "Add show",
@@ -384,7 +384,7 @@
       "method": "POST",
       "body": {
         "mimeType": "application/json",
-        "text": "{\n\t\"name\": \"007 Bond\",\n\t\"language\": \"Hindi\",\n\t\"genres\": [\"Crime\"],\n\t\"price\": 100.0,\n\t\"capacity\": 120,\n\t\"startTime\": \"2023-09-22T10:19:03.652Z\",\n\t\"endTime\": \"2023-09-22T10:19:03.652Z\",\n\t\"movie\": \"6513e914bd3b69c0926848f5\",\n\t\"franchise\": \"6513e91784338ff402a3e4ff\"\n}"
+        "text": "{\n\t\"name\": \"007 Bond\",\n\t\"language\": \"Hindi\",\n\t\"genres\": [\"Crime\"],\n\t\"price\": 100.0,\n\t\"capacity\": 120,\n\t\"startTime\": \"2023-09-22T10:19:03.652Z\",\n\t\"endTime\": \"2023-09-22T10:19:03.652Z\",\n\t\"movie\": \"6513ed4897eca0e607a978a7\",\n\t\"franchise\": \"6513ed4caaba7863374ddea7\"\n}"
       },
       "parameters": [],
       "headers": [{ "name": "Content-Type", "value": "application/json" }],
@@ -428,6 +428,58 @@
       "headers": [{ "name": "Content-Type", "value": "application/json" }],
       "authentication": {},
       "metaSortKey": -1695078556741.088,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_c9e60307b2584c0f82e09acdc2c0e496",
+      "parentId": "fld_75faf425a87540868a07a8abd61dbcb6",
+      "modified": 1695804865225,
+      "created": 1695804541307,
+      "url": "{{ _.URL }}/api/shows/6513edab8de955b6ee7c713b",
+      "name": "Show",
+      "description": "",
+      "method": "GET",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n\t\"name\": \"007 Bond\",\n\t\"language\": \"Hindi\",\n\t\"genres\": [\"Crime\"],\n\t\"price\": 100.0,\n\t\"capacity\": 120,\n\t\"startTime\": \"2023-09-22T10:19:03.652Z\",\n\t\"endTime\": \"2023-09-22T10:19:03.652Z\",\n\t\"movie\": \"650d68d15af525af81a8907d\",\n\t\"franchise\": \"650d68d9639323c8a46a0c20\"\n}"
+      },
+      "parameters": [],
+      "headers": [{ "name": "Content-Type", "value": "application/json" }],
+      "authentication": {},
+      "metaSortKey": -1695078305313.1494,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_471167725b2749b092790caa4752c639",
+      "parentId": "fld_75faf425a87540868a07a8abd61dbcb6",
+      "modified": 1695804884567,
+      "created": 1695804557699,
+      "url": "{{ _.URL }}/api/shows/6513edab8de955b6ee7c713b",
+      "name": "Update show",
+      "description": "",
+      "method": "PUT",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n\t\"name\": \"007 Bond\",\n\t\"language\": \"English\",\n\t\"genres\": [\"Crime\"],\n\t\"price\": 100.0,\n\t\"capacity\": 120,\n\t\"startTime\": \"2023-09-22T10:19:03.652Z\",\n\t\"endTime\": \"2023-09-22T10:19:03.652Z\"\n}"
+      },
+      "parameters": [],
+      "headers": [{ "name": "Content-Type", "value": "application/json" }],
+      "authentication": {},
+      "metaSortKey": -1695078179599.1802,
       "isPrivate": false,
       "settingStoreCookies": true,
       "settingSendCookies": true,
