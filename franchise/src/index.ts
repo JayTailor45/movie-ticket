@@ -9,6 +9,7 @@ import { createFranchiseRouter } from "./routes/new";
 import { indexFranchiseRouter } from "./routes";
 import { showFranchiseRouter } from "./routes/show";
 import { updateFranchiseRouter } from "./routes/update";
+import { UserCreatedListener } from "./events/listeners/user-created.listener";
 
 const app = express();
 
@@ -65,6 +66,8 @@ const start = async () => {
     });
     process.on("SIGINT", () => natsWrapper.client.close());
     process.on("SIGTERM", () => natsWrapper.client.close());
+
+    new UserCreatedListener(natsWrapper.client).listen();
 
     await mongoose.connect(process.env.MONGO_URI);
     console.log("Franchise app connected to mongodb");

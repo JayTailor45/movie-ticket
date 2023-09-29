@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 import { Password } from "../services/password";
 import { enums } from "@tj-movies-ticket/common";
+import { updateIfCurrentPlugin } from "mongoose-update-if-current";
 
 interface UserAttrs {
   email: string;
@@ -20,8 +21,9 @@ interface UserDoc extends mongoose.Document {
   password: string;
   city: string;
   username: string;
-  gender: enums.UserGender;
+  gender: string;
   type: enums.UserType;
+  version: number;
 }
 
 const userSchema = new mongoose.Schema(
@@ -75,6 +77,9 @@ userSchema.pre("save", async function (done) {
   }
   done();
 });
+
+userSchema.set("versionKey", "version");
+userSchema.plugin(updateIfCurrentPlugin);
 
 userSchema.statics.build = (attrs: UserAttrs) => {
   return new User(attrs);

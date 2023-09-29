@@ -16,7 +16,7 @@ export class FranchiseCreatedListener extends Listener<FranchiseCreatedEvent> {
   async onMessage(data: FranchiseCreatedEvent["data"], msg: Message) {
     const { user: userId } = data;
 
-    const user = await User.findById({ userId });
+    const user = await User.findById(userId);
 
     if (user) {
       user.set({ type: user ? UserType.FRANCHISE_USER : UserType.END_USER });

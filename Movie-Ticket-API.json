@@ -1,7 +1,7 @@
 {
   "_type": "export",
   "__export_format": 4,
-  "__export_date": "2023-09-27T08:55:17.431Z",
+  "__export_date": "2023-09-29T08:39:13.231Z",
   "__export_source": "insomnia.desktop.app:v2023.4.0",
   "resources": [
     {
@@ -128,32 +128,6 @@
       "_type": "request"
     },
     {
-      "_id": "req_d3f17014fb804189a1cb839c517e6dd0",
-      "parentId": "fld_d26c2ae9c1e84975bc60007e788eb140",
-      "modified": 1695027365766,
-      "created": 1695027277311,
-      "url": "{{ _.URL }}/api/users/signup-franchise",
-      "name": "Sign Up Franchise",
-      "description": "",
-      "method": "POST",
-      "body": {
-        "mimeType": "application/json",
-        "text": "{\n\t\"username\": \"JayTailor45\",\n\t\"email\": \"tailorj64franchise@gmail.com\",\n\t\"password\": \"password\",\n\t\"city\": \"Surat\",\n\t\"gender\": \"MALE\",\n\t\"organization\": \"JAY LTD\"\n}"
-      },
-      "parameters": [],
-      "headers": [{ "name": "Content-Type", "value": "application/json" }],
-      "authentication": {},
-      "metaSortKey": -1694764061256.875,
-      "isPrivate": false,
-      "settingStoreCookies": true,
-      "settingSendCookies": true,
-      "settingDisableRenderRequestBody": false,
-      "settingEncodeUrl": true,
-      "settingRebuildPath": true,
-      "settingFollowRedirects": "global",
-      "_type": "request"
-    },
-    {
       "_id": "req_1ea47a6b63984e99b643809fd6c3a9b3",
       "parentId": "fld_6ee3e17a455747969fb77639a7cbb57e",
       "modified": 1695801212114,
@@ -266,7 +240,7 @@
     {
       "_id": "req_7f7c308f990f4cbca8e8f35d2e0398e1",
       "parentId": "fld_0ddd3f4fb5c14ee28686d6551841cf42",
-      "modified": 1695368955230,
+      "modified": 1695974238745,
       "created": 1695281140653,
       "url": "{{ _.URL }}/api/franchise",
       "name": "Add franchise",
@@ -274,7 +248,7 @@
       "method": "POST",
       "body": {
         "mimeType": "application/json",
-        "text": "{\n\t\"name\": \"Valntine\",\n\t\"description\": \"Neat and clean environment with dolby atmos\",\n\t\"address\": \"Near VR mall, Surat\",\n\t\"city\": \"Surat\"\n}"
+        "text": "{\n\t\"name\": \"Valntine\",\n\t\"description\": \"Neat and clean environment with dolby atmos\",\n\t\"address\": \"Near VR mall, Surat\",\n\t\"city\": \"Surat\",\n\t\"email\": \"tailorj64@gmail.com\"\n}"
       },
       "parameters": [],
       "headers": [{ "name": "Content-Type", "value": "application/json" }],
@@ -376,7 +350,7 @@
     {
       "_id": "req_a807109c74024630b1baaebf5b418e0e",
       "parentId": "fld_75faf425a87540868a07a8abd61dbcb6",
-      "modified": 1695804842648,
+      "modified": 1695976702135,
       "created": 1695377481396,
       "url": "{{ _.URL }}/api/shows/",
       "name": "Add show",
@@ -384,7 +358,7 @@
       "method": "POST",
       "body": {
         "mimeType": "application/json",
-        "text": "{\n\t\"name\": \"007 Bond\",\n\t\"language\": \"Hindi\",\n\t\"genres\": [\"Crime\"],\n\t\"price\": 100.0,\n\t\"capacity\": 120,\n\t\"startTime\": \"2023-09-22T10:19:03.652Z\",\n\t\"endTime\": \"2023-09-22T10:19:03.652Z\",\n\t\"movie\": \"6513ed4897eca0e607a978a7\",\n\t\"franchise\": \"6513ed4caaba7863374ddea7\"\n}"
+        "text": "{\n\t\"name\": \"007 Bond\",\n\t\"language\": \"Hindi\",\n\t\"genres\": [\"Crime\"],\n\t\"price\": 100.0,\n\t\"capacity\": 120,\n\t\"startTime\": \"2023-09-22T10:19:03.652Z\",\n\t\"endTime\": \"2023-09-22T10:19:03.652Z\",\n\t\"movie\": \"65168cbd6577a8b48d3f06e3\",\n\t\"franchise\": \"65168ccfe1ab230b22dbc1b9\"\n}"
       },
       "parameters": [],
       "headers": [{ "name": "Content-Type", "value": "application/json" }],
@@ -505,21 +479,21 @@
     {
       "_id": "jar_07b8c6efbd777cb8eed7f33fdcb42ff0f3875832",
       "parentId": "wrk_12bb4f49c25d42549812801d3af9bcb0",
-      "modified": 1695801205833,
+      "modified": 1695976628021,
       "created": 1695019860918,
       "name": "Default Jar",
       "cookies": [
         {
           "key": "session",
-          "value": "eyJqd3QiOiJleUpoYkdjaU9pSklVekkxTmlJc0luUjVjQ0k2SWtwWFZDSjkuZXlKcFpDSTZJalkxTVROa1pqY3dZV001WVRRMVlUQXdOMlJsT0RCaU15SXNJbVZ0WVdsc0lqb2lkR0ZwYkc5eWFqWTBRR2R0WVdsc0xtTnZiU0lzSW1saGRDSTZNVFk1TlRnd01USXdOWDAudF94UTdGQ0Q0UzNFdG1YQllyb2RIVTJ4T0NaM3Y4YUMtdExxUy1sZG83VSJ9",
+          "value": "eyJqd3QiOiJleUpoYkdjaU9pSklVekkxTmlJc0luUjVjQ0k2SWtwWFZDSjkuZXlKcFpDSTZJalkxTVRZNFkySXpaVFptTURGa05qQXhOamcxWVRZM1l5SXNJbVZ0WVdsc0lqb2lkR0ZwYkc5eWFqWTBRR2R0WVdsc0xtTnZiU0lzSW1saGRDSTZNVFk1TlRrM05qWXlPSDAuM2tYRTZrajdhX1RSU3RCWlBjZ2M1UjBBNjA0TkhGOGVVQUJlT1N0QnpMZyJ9",
           "domain": "movie-ticket.com",
           "path": "/",
           "secure": true,
           "httpOnly": true,
           "hostOnly": true,
           "creation": "2023-09-18T08:07:23.150Z",
-          "lastAccessed": "2023-09-27T07:53:25.833Z",
-          "id": "7774959834587378"
+          "lastAccessed": "2023-09-29T08:37:08.021Z",
+          "id": "009189991968979516"
         }
       ],
       "_type": "cookie_jar"

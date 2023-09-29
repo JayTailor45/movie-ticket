@@ -4,6 +4,8 @@ import jwt from "jsonwebtoken";
 import { errors as Err, middlewares as mw } from "@tj-movies-ticket/common/";
 import { User } from "../models/user";
 import { UserGender } from "@tj-movies-ticket/common/build/enums";
+import { UserCreatedPublisher } from "../events/publishers/user-created.publisher";
+import { natsWrapper } from "../nats-wrapper";
 
 const router = express.Router();
 
@@ -63,6 +65,17 @@ router.post(
     req.session = {
       jwt: userJwt,
     };
+
+    new UserCreatedPublisher(natsWrapper.client).publish({
+      id: user.id,
+      email: user.email,
+      city: user.city,
+      gender: user.gender,
+      password: user.password,
+      type: user.type,
+      username: user.username,
+      version: user.version,
+    });
 
     res.status(201).send(user);
   },
