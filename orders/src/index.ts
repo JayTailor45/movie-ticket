@@ -5,6 +5,12 @@ import cookieSession from "cookie-session";
 
 import { middlewares as mw, errors as Err } from "@tj-movies-ticket/common";
 import { natsWrapper } from "./nats-wrapper";
+import { ShowCreatedListener } from "./events/listeners/show-created.listener";
+import { ShowUpdatedListener } from "./events/listeners/show-updated.listener";
+import { indexOrderRouter } from "./routes";
+import { newOrderRouter } from "./routes/new";
+import { showOrderRouter } from "./routes/show";
+import { deleteOrderRouter } from "./routes/delete";
 
 const app = express();
 
@@ -19,6 +25,11 @@ app.use(
 );
 
 app.use(mw.currentUser);
+
+app.use(indexOrderRouter);
+app.use(newOrderRouter);
+app.use(showOrderRouter);
+app.use(deleteOrderRouter);
 
 app.get("*", async () => {
   throw new Err.NotFoundError();
@@ -56,6 +67,9 @@ const start = async () => {
     });
     process.on("SIGINT", () => natsWrapper.client.close());
     process.on("SIGTERM", () => natsWrapper.client.close());
+
+    new ShowCreatedListener(natsWrapper.client).listen();
+    new ShowUpdatedListener(natsWrapper.client).listen();
 
     await mongoose.connect(process.env.MONGO_URI);
     console.log("Orders app connected to mongodb");
