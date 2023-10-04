@@ -47,3 +47,11 @@ build:
         manual:
           - dest: .
             src: 'src/**/*.ts'
+    - image: jaytailor45/movie-ticket-expiration
+      context: expiration
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: 'src/**/*.ts'
+            dest: .
