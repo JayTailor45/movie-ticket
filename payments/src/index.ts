@@ -3,16 +3,12 @@ import mongoose from "mongoose";
 import "express-async-errors";
 import cookieSession from "cookie-session";
 
-import { middlewares as mw, errors as Err } from "@tj-movies-ticket/common";
+import { errors as Err, middlewares as md } from "@tj-movies-ticket/common";
 import { natsWrapper } from "./nats-wrapper";
-import { MovieCreatedListener } from "./events/listeners/movie-created.listener";
-import { MovieUpdatedListener } from "./events/listeners/movie-updated.listener";
-import { FranchiseCreatedListener } from "./events/listeners/franchise-created.listener";
-import { FranchiseUpdatedListener } from "./events/listeners/franchise-updated.listener";
-import { showShowRouter } from "./routes/show";
-import { createShowRouter } from "./routes/new";
-import { updateShowRouter } from "./routes/update";
-import { indexShowRouter } from "./routes";
+import { OrderCreatedListener } from "./events/listeners/order-created-listener";
+import { OrderCancelledListener } from "./events/listeners/order-cancelled-listener";
+import { createChargeRouter } from "./routes/new";
+import { getConnectedAccountLink } from "./routes/generate-connected-account-link";
 
 const app = express();
 
@@ -26,18 +22,16 @@ app.use(
   }),
 );
 
-app.use(mw.currentUser);
+app.use(md.currentUser);
 
-app.use(indexShowRouter);
-app.use(showShowRouter);
-app.use(createShowRouter);
-app.use(updateShowRouter);
+app.use(createChargeRouter);
+app.use(getConnectedAccountLink);
 
 app.get("*", async () => {
   throw new Err.NotFoundError();
 });
 
-app.use(mw.errorHandler);
+app.use(md.errorHandler);
 
 const start = async () => {
   // check if env variables are defined
@@ -70,20 +64,17 @@ const start = async () => {
     process.on("SIGINT", () => natsWrapper.client.close());
     process.on("SIGTERM", () => natsWrapper.client.close());
 
-    new MovieCreatedListener(natsWrapper.client).listen();
-    new MovieUpdatedListener(natsWrapper.client).listen();
-
-    new FranchiseCreatedListener(natsWrapper.client).listen();
-    new FranchiseUpdatedListener(natsWrapper.client).listen();
+    new OrderCreatedListener(natsWrapper.client).listen();
+    new OrderCancelledListener(natsWrapper.client).listen();
 
     await mongoose.connect(process.env.MONGO_URI);
-    console.log("Shows app connected to mongodb");
+    console.log("Payments app connected to mongodb");
   } catch (error) {
     console.error(error);
   }
 
   app.listen(3000, () => {
-    console.log("Shows service listening on port", 3000);
+    console.log("Payments service listening on port", 3000);
   });
 };
 
