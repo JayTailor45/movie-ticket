@@ -9,6 +9,7 @@ import { OrderCreatedListener } from "./events/listeners/order-created-listener"
 import { OrderCancelledListener } from "./events/listeners/order-cancelled-listener";
 import { createChargeRouter } from "./routes/new";
 import { getConnectedAccountLink } from "./routes/generate-connected-account-link";
+import { FranchiseCreatedListener } from "./events/listeners/franchise-created-listener";
 
 const app = express();
 
@@ -66,6 +67,7 @@ const start = async () => {
 
     new OrderCreatedListener(natsWrapper.client).listen();
     new OrderCancelledListener(natsWrapper.client).listen();
+    new FranchiseCreatedListener(natsWrapper.client).listen();
 
     await mongoose.connect(process.env.MONGO_URI);
     console.log("Payments app connected to mongodb");

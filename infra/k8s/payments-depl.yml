@@ -37,12 +37,12 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: shows-srv
+  name: payments-srv
 spec:
   selector:
-    app: shows
+    app: payments
   ports:
-    - name: shows
+    - name: payments
       protocol: TCP
       port: 3000
       targetPort: 3000
